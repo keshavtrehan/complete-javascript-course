@@ -90,3 +90,45 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+const user = 'Steven Thomas Williams'; // stw
+
+const createUserName = function (accs) {
+  // Creating usernames for accounts using the forEach
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(function (word) {
+        return word[0];
+      })
+      .join('');
+  });
+};
+
+createUserName(accounts);
+console.log(accounts);
+
+const euroToUSD = 1.1;
+
+const movementsUSD = movements.map(function (mov) {
+  // MAP method in arrays which changes all the values
+  return mov * euroToUSD;
+});
+
+console.log(movementsUSD, movements); // the original is not mutated
+
+// map method can also use (element, index) variables for value and index. It needs to have a function within it or arrow
+
+// FILTER METHOD: creating a new array where the elements match a criteria
+const deposits = movements.filter(function (element, index) {
+  return element > 0; // only the returned elements will make it to the new array
+});
+
+console.log(deposits);
+
+// Reduce method
+// accu is accumulator
+const balance /*value not array*/ = movements.reduce(function (accu, cur, arr) {
+  return accu + cur;
+}, 0);
